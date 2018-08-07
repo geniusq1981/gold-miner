@@ -70,8 +70,8 @@ foo.prototype.print = function() {
  console.log( this.id, this.name );
 };
 
-var a = new foo(1, ‘A’);
-var b = new foo(2, ‘B’);
+var a = new foo(1, 'A');
+var b = new foo(2, 'B');
 
 a.print();
 b.print();
@@ -93,12 +93,12 @@ b.print();
 ```Javascript
 var a = {
  id: 1,
- name: ‘A’
+ name: 'A'
 };
 
 var b = {
  id: 2,
- name: ‘B’
+ name: 'B'
 };
 ```
 
@@ -112,7 +112,7 @@ function foo(id, name) {
  this.name = name;
 
  return {
-  message: ‘Got you!’
+  message: 'Got you!'
  };
 }
 
@@ -120,8 +120,8 @@ foo.prototype.print = function() {
  console.log( this.id, this.name );
 };
 
-var a = new foo(1, ‘A’);
-var b = new foo(2, ‘B’);
+var a = new foo(1, 'A');
+var b = new foo(2, 'B');
 
 console.log( a );
 console.log( b );
@@ -134,14 +134,14 @@ console.log( b );
 但等一下，如果不返回一个对象，我们返回比如 _'abc'_、数字、布尔值、函数、nullundefined 或是数组，结果会怎样？事实证明，构造对象是否会改变取决于你返回的内容。看看下面的模式？
 
 ```Javascript
-return {}; // 改变
-return function() {}; // 改变
-return new Number(3); // 改变
-return [1, 2, 3]; // 改变
-return null; // 不改变
-return undefined; // 不改变
-return ‘Hello’; // 不改变
-return 3; // 不改变
+return {}; // Breaks
+return function() {}; // Breaks
+return new Number(3); // Breaks
+return [1, 2, 3]; // Breaks
+return null; // Doesn’t break
+return undefined; // Doesn’t break
+return ‘Hello’; // Doesn’t break
+return 3; // Doesn’t break
 ...
 ```
 
@@ -159,7 +159,7 @@ return 3; // 不改变
 var expenses = {
  data: [1, 2, 3, 4, 5],
  total: function(earnings) {
-  return this.data.reduce( (prev, cur) => prev + cur ) - (earnings || 0);
+  return this.data.reduce( (prev, cur) => prev + cur ) — (earnings || 0);
  }
 };
 
@@ -209,13 +209,13 @@ console.log( expenses.total.apply(rents, [10]) ); // 0 正常！
 
 让我们看看你是否可以解决这个问题。下面的示例会输出什么？
 
-#### Example #2
+#### Example #20
 
 ```Javascript
 var expenses = {
  data: [1, 2, 3, 4, 5],
  total: function(earnings) {
-  return this.data.reduce( (prev, cur) => prev + cur ) - (earnings   || 0);
+  return this.data.reduce( (prev, cur) => prev + cur ) — (earnings   || 0);
  }
 };
 
@@ -254,10 +254,10 @@ console.log(rentsTotal());
 // JavaScript
 
 var myButton = {
- elem: document.getElementById(‘button’),
- buttonName: ‘My Precious Button’,
+ elem: document.getElementById('button'),
+ buttonName: 'My Precious Button',
  init: function() {
-  this.elem.addEventListener(‘click’, this.onClick);
+  this.elem.addEventListener('click', this.onClick);
  },
  onClick: function() {
   console.log(this.buttonName);
@@ -277,11 +277,11 @@ myButton.init();
 
 ```Javascript
 var myButton = {
- elem: document.getElementById(‘button’),
- buttonName: ‘My Precious Button’,
+ elem: document.getElementById('button'),
+ buttonName: 'My Precious Button',
  init: function() {
   this.onClick = this.onClick.bind(this);
-  this.elem.addEventListener(‘click’, this.onClick);
+  this.elem.addEventListener('click', this.onClick);
  },
  onClick: function() {
   console.log(this.buttonName);
@@ -297,10 +297,10 @@ var myButton = {
 
 ```Javascript
 var myButton = {
- elem: document.getElementById(‘button’),
- buttonName: ‘My Precious Button’,
+ elem: document.getElementById('button'),
+ buttonName: 'My Precious Button',
  init: function() {
-  this.elem.addEventListener(‘click’, () => {
+  this.elem.addEventListener('click', () => {
    this.onClick.call(this);
   });
  },
@@ -314,10 +314,10 @@ var myButton = {
 
 ```Javascript
 var myButton = {
- elem: document.getElementById(‘button’),
- buttonName: ‘My Precious Button’,
+ elem: document.getElementById('button'),
+ buttonName: 'My Precious Button',
  init: function() {
-  this.elem.addEventListener(‘click’, () => {
+  this.elem.addEventListener('click', () => {
    console.log(this.buttonName);
   });
  }
